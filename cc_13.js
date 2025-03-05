@@ -31,3 +31,17 @@ addEmployeeCard("Emma Smith", "Project Manager") // Calling the function to add 
 addEmployeeCard("William Brown", "Data Analyst") // Calling the function to add employee 2
 addEmployeeCard("David Anderson", "Software Engineer") // Calling the function to add employee 3
 addEmployeeCard("Olivia Martinez", "Marketing Specialist") // Calling the function to add employee 4
+
+
+
+// Task 3: Converting NodeLists to Arrays for Bulk Updates
+// Using querySelectorAll to select all elements with the employee card class
+const employeeCards = document.querySelectorAll(".employee-card");
+
+// Converting the NodeList into an array
+const employeeCardsArray = Array.from(employeeCards);
+
+// Using an array method to update each card's style; here, I'm adding a blue border 
+employeeCardsArray.forEach(card => {
+    card.style.border = "2px solid navy";
+})

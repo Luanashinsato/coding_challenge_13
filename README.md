@@ -1,0 +1,2 @@
+# Coding Challenge 13
+Reinforcing my understanding of selecting nodes, using methods like createElement, appendChild, removeChild, and handling event propagation. This business case simulates real-world scenarios where a company manages employee data interactively.

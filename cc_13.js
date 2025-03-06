@@ -23,9 +23,18 @@ function addEmployeeCard(name, position) {
         event.stopPropagation(); // Task 4 - Preventing event bubbling to container
     }); 
 
+    // Task 5 - Creating an edit button
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+    editButton.addEventListener("click", (event) => {
+        enableEditing(card, nameHeading, positionParagraph, editButton);
+        event.stopPropagation();
+    });
+
     card.appendChild(nameHeading); // Appending name heading 
     card.appendChild(positionParagraph); // Appending position paragraph 
     card.appendChild(removeButton); // Appending remove button 
+    card.appendChild(editButton); // Task 5 - Appending edit button 
     employeeContainer.appendChild(card); // Appending employee card to employee container 
 }
 addEmployeeCard("Emma Smith", "Project Manager") // Calling the function to add employee 1 
@@ -59,3 +68,35 @@ employeeContainer.addEventListener("click", (event) => {
     console.log("Employee Card clicked");
     }
 });
+
+
+// Task 5: Additional Challenge – Inline Editing of Employee Details
+function enableEditing(card, nameHeading, positionParagraph, editButton) {
+    // Creating input fields for name and position 
+    const nameInput = document.createElement("input");
+    nameInput.type = "text"; // Setting input type to text 
+    nameInput.value = nameHeading.textContent; // Pre-filling with existing name 
+    
+    const positionInput = document.createElement("input");
+    positionInput.type = "text"; // Setting input type to text 
+    positionInput.value = positionParagraph.textContent; // Pre-filling with existing position
+    
+    // Creating save button to apply changes 
+    const saveButton = document.createElement("button");
+    saveButton.textContent = "Save";
+    saveButton.addEventListener("click", () => {
+        // Updating the heading and paragraph with new input values 
+        nameHeading.textContent = nameInput.value;
+        positionParagraph.textContent = positionInput.value;
+        
+        // Restoring original elements after saving 
+        card.replaceChild(nameHeading, nameInput);
+        card.replaceChild(positionParagraph, positionInput);
+        card.replaceChild(editButton, saveButton);
+    });
+    
+    // Replacing static text with input fields
+    card.replaceChild(nameInput, nameHeading);
+    card.replaceChild(positionInput, positionParagraph);
+    card.replaceChild(saveButton, editButton);
+}
